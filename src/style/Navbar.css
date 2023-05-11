@@ -1,0 +1,16 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navTitle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navItems {
+  padding-left: 1rem;
+  text-decoration: none;
+  color: #000;
+  align-self: center;
+}

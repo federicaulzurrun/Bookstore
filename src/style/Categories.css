@@ -1,0 +1,9 @@
+.categories {
+  font-family: Montserrat, sans-serif;
+  font-weight: bold;
+  align-self: center;
+  display: flex;
+  padding: 5% 0;
+  text-decoration: underline;
+  text-transform: uppercase;
+}
