@@ -22,7 +22,7 @@ const AddBook = () => {
       category: bookData.category,
     };
     dispatch(addBook(newBook));
-    setBookData({ title: '', author: '', genre: '' });
+    setBookData({ title: '', author: '', category: '' });
   };
   return (
     <>
