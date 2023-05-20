@@ -17,26 +17,28 @@ const Book = ({ data }) => {
   };
 
   return (
-    <div className="bookContainer">
-      <div>
+    <div className="flexRow bookContainer">
+      <div className="bookData">
         <h4 className="genre">{category}</h4>
         <h3 className="title">{title}</h3>
         <h4 className="author">{author}</h4>
-        <button type="button">Comments</button>
-        <button type="button" onClick={() => handleRemoveBook(item_id)}>
+        <button type="button" className="autorBook itemBts">Comments</button>
+        <button type="button" className="autorBook itemBts removeBtn edit" onClick={() => handleRemoveBook(item_id)}>
           Remove
         </button>
-        <button type="button">Edit</button>
+        <button type="button" className="autorBook itemBts edit">Edit</button>
       </div>
-      <div>
-        <h5>Progress</h5>
-        <p>50%</p>
-        <p>Completed</p>
+      <div className="flexRow circleCont">
+        <div className="progressCircle"> </div>
+        <div className="completedContainer">
+          <p className="percentage">80%</p>
+          <p className="status">Completed</p>
+        </div>
       </div>
-      <div>
-        <h5>Current Chapter</h5>
-        <p>Chapter 7</p>
-        <button type="button">Update Progress</button>
+      <div className="contChap">
+        <h5 className="currentC">Current Chapter</h5>
+        <p className="chapter">Chapter 7</p>
+        <button type="button" className="autorBook itemBts updateBtn">Update Progress</button>
       </div>
     </div>
   );
