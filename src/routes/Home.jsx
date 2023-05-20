@@ -3,7 +3,9 @@ import BookStore from '../components/BookStore';
 
 const HomePage = () => (
   <>
-    <BookStore />
+    <div className="bookStoreCont">
+      <BookStore />
+    </div>
   </>
 );
 
