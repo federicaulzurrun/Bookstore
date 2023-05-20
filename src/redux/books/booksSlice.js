@@ -33,7 +33,7 @@ const booksSlice = createSlice({
   name: 'books',
   initialState,
   reducers: {
-
+    // No need to redefine removeBook here
   },
   extraReducers: (builder) => {
     builder
@@ -62,10 +62,7 @@ const booksSlice = createSlice({
       })
       .addCase(removeBookAsync.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        const bookIndex = state.books.findIndex((book) => book.item_id === action.payload);
-        if (bookIndex !== -1) {
-          state.books.splice(bookIndex, 1);
-        }
+        state.books = state.books.filter((book) => book.item_id !== action.payload);
       })
       .addCase(removeBookAsync.rejected, (state, action) => {
         state.status = 'failed';
