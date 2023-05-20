@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
 // Add a book to the API
 export const addBookAsync = createAsyncThunk(
   'books/addBookAsync',
@@ -12,19 +11,16 @@ export const addBookAsync = createAsyncThunk(
     return response.data;
   },
 );
-
 // Remove a book from the API
 export const removeBookAsync = createAsyncThunk('books/removeBookAsync', async (bookId) => {
   await axios.delete(`https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/XKwjcPWtaWq6gTno4u9E/books/${bookId}`);
   return bookId;
 });
-
 const initialState = {
   books: [],
   isLoading: true,
   isError: null,
 };
-
 export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
   const response = await axios.get('https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/XKwjcPWtaWq6gTno4u9E/books');
   const books = Object.entries(response.data).map((item) => ({
@@ -33,12 +29,11 @@ export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
   }));
   return books;
 });
-
 const booksSlice = createSlice({
   name: 'books',
   initialState,
   reducers: {
-    // No need to redefine removeBook here
+
   },
   extraReducers: (builder) => {
     builder
@@ -67,7 +62,7 @@ const booksSlice = createSlice({
       })
       .addCase(removeBookAsync.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        const bookIndex = state.books.findIndex((book) => book.id === action.payload);
+        const bookIndex = state.books.findIndex((book) => book.item_id === action.payload);
         if (bookIndex !== -1) {
           state.books.splice(bookIndex, 1);
         }
@@ -78,7 +73,5 @@ const booksSlice = createSlice({
       });
   },
 });
-
 export const booksActions = booksSlice.actions;
-
 export default booksSlice.reducer;

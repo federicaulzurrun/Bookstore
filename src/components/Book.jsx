@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { removeBookAsync } from '../redux/books/booksSlice';
 
-const Book = ({
-  id, title, author, category,
-}) => {
+const Book = ({ data }) => {
+  const {
+    id,
+    category,
+    title,
+    author,
+  } = data;
   const dispatch = useDispatch();
-
-  const handleRemoveBook = async () => {
-    await dispatch(removeBookAsync(id));
+  const handleRemoveBook = () => {
+    dispatch(removeBookAsync(id));
   };
 
   return (
@@ -39,10 +42,12 @@ const Book = ({
 };
 
 Book.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
+  data: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Book;
