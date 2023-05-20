@@ -9,7 +9,7 @@ export const addBookAsync = createAsyncThunk(
   'books/addBookAsync',
   async (newBook) => {
     const response = await axios.post(
-      'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/9hKoygALTjLCnDjUc4tx/books',
+      'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/XKwjcPWtaWq6gTno4u9E/books',
       newBook,
     );
     return response.data;
