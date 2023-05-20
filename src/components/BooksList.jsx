@@ -1,24 +1,32 @@
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeBookAsync, fetchBooks } from '../redux/books/booksSlice';
 import Book from './Book';
+import '../style/Book.css';
 
 const BooksList = () => {
-  const books = useSelector((state) => state.books);
-
+  const { books } = useSelector((store) => store.books);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchBooks());
+  }, [dispatch]);
+  const handleRemoveBook = async (bookId) => {
+    await dispatch(removeBookAsync(bookId));
+  };
   return (
-    <div className="booksListContainer">
-      <div className="booksList">
-        {books.map((book) => (
-          <Book
-            key={book.id}
-            id={book.id}
-            category={book.category}
-            title={book.title}
-            author={book.author}
-          />
-        ))}
-      </div>
-    </div>
+    <>
+      {books.map((book) => (
+        <Book
+          key={book.item_id}
+          data={book}
+          id={book.item_id}
+          author={book.author}
+          title={book.title}
+          category={book.category}
+          handleRemoveBook={handleRemoveBook}
+        />
+      ))}
+    </>
   );
 };
-
 export default BooksList;

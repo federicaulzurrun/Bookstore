@@ -1,66 +1,42 @@
-import { useState } from 'react';
+import { v4 as uId } from 'uuid';
 import { useDispatch } from 'react-redux';
-import { v4 as uuidv4 } from 'uuid';
-import { addBook } from '../redux/books/booksSlice';
+import { addBookAsync, fetchBooks } from '../redux/books/booksSlice';
 
 const AddBook = () => {
   const dispatch = useDispatch();
-  const [bookData, setBookData] = useState({
-    title: '',
-    author: '',
-    category: '',
-  });
-  const handleChange = (e) => {
-    setBookData({ ...bookData, [e.target.name]: e.target.value });
-  };
-  const handleAddBook = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newBook = {
-      item_id: uuidv4(),
-      title: bookData.title,
-      author: bookData.author,
-      category: bookData.category,
+    const data = {
+      item_id: uId(),
+      category: e.target.categories.value,
+      title: e.target.title.value,
+      author: e.target.author.value,
     };
-    dispatch(addBook(newBook));
-    setBookData({ title: '', author: '', category: '' });
+
+    await dispatch(addBookAsync(data));
+
+    dispatch(fetchBooks());
+
+    e.target.title.value = '';
+    e.target.author.value = '';
   };
+
   return (
-    <>
-      <div className="form-container">
-        <h2>Add a new Book</h2>
-        <form onSubmit={handleAddBook}>
-          <input
-            type="text"
-            name="title"
-            placeholder="Title..."
-            value={bookData.title}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="text"
-            name="author"
-            placeholder="Author..."
-            value={bookData.author}
-            onChange={handleChange}
-            required
-          />
-          <select
-            name="category"
-            value={bookData.category}
-            onChange={handleChange}
-            required
-          >
-            <option value="select" hidden>Select a Category</option>
-            <option value="Fiction">Fiction</option>
-            <option value="Nonfiction">Nonfiction</option>
-            <option value="Mistery">Mistery</option>
-            <option value="Romance">Romance</option>
-          </select>
-          <button type="submit">Add book</button>
-        </form>
-      </div>
-    </>
+    <div className="new-book">
+      <p>Add a new book!</p>
+      <form className="frm-new-book" onSubmit={handleSubmit}>
+        <input name="title" type="text" placeholder="Book title" />
+        <input name="author" type="text" placeholder="Author Book" />
+        <select id="categories">
+          <option value="Category">Category</option>
+          <option value="Action">Action</option>
+          <option value="Fiction">Fiction</option>
+          <option value="Romance">Romance</option>
+        </select>
+        <button type="submit">Add Book</button>
+      </form>
+    </div>
   );
 };
 
