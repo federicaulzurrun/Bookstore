@@ -227,7 +227,8 @@
     text-align: left;
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
+    padding-left: 2%;
   }
 
   .chapter,
