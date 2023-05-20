@@ -1,3 +1,9 @@
+.categoriesCont {
+  margin: 1rem;
+  display: flex;
+  align-self: center;
+}
+
 .categories {
   font-family: Montserrat, sans-serif;
   font-weight: bold;
@@ -6,4 +12,10 @@
   padding: 5% 0;
   text-decoration: underline;
   text-transform: uppercase;
+}
+
+@media screen and (min-width: 1024px) {
+  .categoriesCont {
+    margin: 2.375rem 6.25rem 2.375rem 6.25rem;
+  }
 }
