@@ -1,6 +1,7 @@
 import { v4 as uId } from 'uuid';
 import { useDispatch } from 'react-redux';
 import { addBookAsync, fetchBooks } from '../redux/books/booksSlice';
+import '../style/AddNewBook.css';
 
 const AddBook = () => {
   const dispatch = useDispatch();
@@ -24,17 +25,21 @@ const AddBook = () => {
 
   return (
     <div className="new-book">
-      <p>Add a new book!</p>
+      <h3>Add a new book!</h3>
       <form className="frm-new-book" onSubmit={handleSubmit}>
-        <input name="title" type="text" placeholder="Book title" />
-        <input name="author" type="text" placeholder="Author Book" />
-        <select id="categories">
+        <input className="input" name="title" type="text" placeholder="Book title" />
+        <input className="input" name="author" type="text" placeholder="Author Book" />
+        <select className="input" id="categories">
           <option value="Category">Category</option>
           <option value="Action">Action</option>
           <option value="Fiction">Fiction</option>
           <option value="Romance">Romance</option>
         </select>
-        <button type="submit">Add Book</button>
+        <div className="addBookContainer">
+          <button className="btn-submit" type="submit">
+            Add book
+          </button>
+        </div>
       </form>
     </div>
   );

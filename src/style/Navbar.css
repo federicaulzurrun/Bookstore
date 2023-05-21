@@ -1,16 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap');
+
 nav {
   display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
   justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
 }
 
 .navTitle {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
 }
 
 .navItems {
-  padding-left: 1rem;
+  font-size: 0.813rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  font-family: 'Montserrat', sans-serif;
+  line-height: normal;
+  letter-spacing: 1.9px;
+  color: #121212;
   text-decoration: none;
-  color: #000;
-  align-self: center;
+  margin-bottom: 1rem;
+}
+
+.cat {
+  opacity: 0.5;
+}
+
+h1 {
+  color: #0290ff;
+  font-weight: bold;
+  font-size: 1.875rem;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  font-family: 'Montserrat', sans-serif;
+}
+
+@media screen and (min-width: 708px) {
+  nav {
+    flex-direction: row;
+  }
+
+  .navTitle {
+    flex-direction: row;
+  }
+}
+
+@media screen and (min-width: 708px) {
+  .navItems {
+    padding-left: 2.563rem;
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  nav {
+    padding: 0 6.25rem 0 6.25rem;
+  }
 }

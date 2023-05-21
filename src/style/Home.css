@@ -1,0 +1,9 @@
+.bookStoreCont {
+  margin: 1rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .bookStoreCont {
+    margin: 2.375rem 6.25rem 2.375rem 6.25rem;
+  }
+}
